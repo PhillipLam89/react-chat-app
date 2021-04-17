@@ -1,4 +1,5 @@
 // these helper functions will help to manage users such as which rooms they're in etc
+const express = require('express')
 
 const users = []
 
