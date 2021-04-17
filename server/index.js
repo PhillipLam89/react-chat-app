@@ -3,8 +3,6 @@ const socketio = require('socket.io')
 const http = require('http')
 const PORT = process.env.PORT || 5000
 const router = require('./router')
-
-
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
@@ -14,7 +12,21 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
       console.log('user left!!! :((')
     })
+
+    socket.on('join', ({name,room}, callback) => {
+      console.log(name,room)
+      const error = true
+      if (error) {
+        callback({error: 'error fag'})
+      }
+    })
+
+  socket.on('disconnect', () => {
+    console.log('user has left')
+  })
+
 })
+
 
 app.use(router)
 

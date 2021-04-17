@@ -9,7 +9,7 @@ import './Join.css'
       return (
         <div className="joinOuterContainer">
           <div className="joinInnerContainer">
-          <h1 className="heading">Phillip's Live Chat App</h1>
+          <h1 className="heading">Phillip's Live Chat ASpp</h1>
           <div><input  placeholder="Name" className="joinInput" type="text" onChange={e => setName(e.target.value)} /></div>
           <div><input  placeholder="Room" className="joinInput mt-20" type="text" onChange={e => setRoom(e.target.value)} /></div>
           <Link onClick={e => (!name || !room) && e.preventDefault()} to={`/chat?name=${name}&room=${room}`}>
