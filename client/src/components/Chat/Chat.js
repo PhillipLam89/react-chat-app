@@ -15,19 +15,19 @@ let socket;
       setName(name)
       setRoom(room)
 
-      socket.emit('join', {name, room}, ({error}) => {
-        console.log('err test')
-        alert(error)
+      socket.emit('join', {name, room}, ({error}) => { // here we destructure the error obj from the server
+        console.log('haha you got an err noob')  //this code block ONLY executes if there is an error on the server
       })
+
+      return () =>  {
+        socket.emit('disconnected', {name})
+        socket.off()
+
+      }
 
     }, [ENDPOINT, location.search])
 
-    // return () => {
-    //   socket.emit('disconnect')
-    //   socket.off()
-    // }
 
-    console.log('socket -->', socket)
 
   return (
     <h1>Chat</h1>
