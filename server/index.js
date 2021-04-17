@@ -1,11 +1,24 @@
 const express = require('express')
 const socketio = require('socket.io')
-const http = require('http')
+
 const PORT = process.env.PORT || 5000
 const router = require('./router')
-const app = express()
-const server = http.createServer(app)
-const io = socketio(server)
+
+
+          //method 1
+// const http = require('http')
+// const app = express()
+// const server = http.createServer(app)
+// const io = socketio(server)
+
+        // method 2
+const httpServer = require("http").createServer();
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+
 
 io.on('connection', (socket) => {
     console.log('we have a new connection!@!!!')
@@ -14,10 +27,10 @@ io.on('connection', (socket) => {
     })
 
     socket.on('join', ({name,room}, callback) => {
-      console.log(name,room)
-      const error = true
-      if (error) {
-        callback({error: 'error fag'})
+      console.log(`User ${name} has joined room ${room}`)
+      const error = false
+      if (error) { // if an error occurs, this call back will pass the error obj to the front end
+        callback({error: 'err'})
       }
     })
 
