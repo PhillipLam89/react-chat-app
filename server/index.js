@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
        //we must pass in an obj because this function requires it as we defined in users.js
       if (error) return callback(error)
 
-      socket.emit('adminMessage', {user: 'admin', text: `${user.name}, welcome to room ${user.room}`})
+      socket.emit('message', {user: 'admin', text: `${user.name}, welcome to room ${user.room}`})
       //socket.broadcast will emit a message to everyone ELSE in the room but the user
       socket.broadcast.to(user.room).emit('message', {user: 'admin', text: `${user.name} has joined!`}) //will be visible to other participants in the chat
       socket.join(user.room) //this joins the user in that room

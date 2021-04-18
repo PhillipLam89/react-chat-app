@@ -33,7 +33,7 @@ let socket;
       })
     }, [messages])
 
-    // funtion to send messages
+    // function to send messages
     const userMessage = e => {
       e.preventDefault()
       if(message) {
