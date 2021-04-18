@@ -23,18 +23,16 @@ const io = require('socket.io')(httpServer, {
 
 
 io.on('connection', (socket) => {
-    console.log('we have a new connection!@!!!')
 
     socket.on('join', ({name,room}, callback) => {
-      console.log(`User ${name} has joined room ${room}`)
       const {error, user} = addUser({id: socket.id, name, room})
        //we must pass in an obj because this function requires it as we defined in users.js
       if (error) return callback(error)
-
+      socket.join(user.room) //this joins the user in that room
       socket.emit('message', {user: 'admin', text: `${user.name}, welcome to room ${user.room}`})
       //socket.broadcast will emit a message to everyone ELSE in the room but the user
       socket.broadcast.to(user.room).emit('message', {user: 'admin', text: `${user.name} has joined!`}) //will be visible to other participants in the chat
-      socket.join(user.room) //this joins the user in that room
+
 
       callback()
     })
@@ -46,15 +44,15 @@ io.on('connection', (socket) => {
       callback()
     })
 
-    socket.on('disconnected', ({name}, callback) => {
-      console.log(`${name} has left the chat`)
-    })
+  socket.on('disconnect', () => {
+    const user = removeUser(socket.id);
 
-
-
-
-
-})
+    if(user) {
+      io.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left.` });
+      io.to(user.room).emit('roomData', { room: user.room, users: getAllUsersInRoom(user.room)});
+    }
+  })
+});
 
 
 app.use(router)
