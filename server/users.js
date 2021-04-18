@@ -13,7 +13,7 @@ const addUser = ({id, name, room}) =>  { //destructured from socket instance
   if (existingUser) return {error: 'That user name is taken bro'}
         // if no duplicate users then proceed
 
-  const user = {id, name, user}
+  const user = {id, name, room}
   users.push(user)
   return {user}
 

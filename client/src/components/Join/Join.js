@@ -7,12 +7,13 @@ import './Join.css'
       const [room, setRoom] = useState('')
 
       function checkNameAndRoomInput(e) {
-        if (!isNaN(room) || !room) {
-          alert('dfdsf')
-
+        //this will prevent empty fields for name/room and also prevent names with all integers or names that start with an integer
+        if (isNaN(room) || !room || !name || !isNaN(name) || !isNaN(name[0])) {
+          e.preventDefault()
+          alert('Invalid Entries, try again')
         }
       }
-// onClick={e => (!name || !room) && e.preventDefault()}
+
       return (
         <div className="joinOuterContainer">
           <div className="joinInnerContainer">
