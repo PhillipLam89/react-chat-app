@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
+import './Chat.css'
+import InfoBar from '../InfoBar/InfoBar'
+import Input from '../Input/Input'
 let socket;
+
+
+
 
   const Chat = ({location}) => {
     const [name, setName] = useState('')
@@ -33,7 +39,7 @@ let socket;
       })
     }, [messages])
 
-    // funtion to send messages
+    // function to send messages
     const userMessage = e => {
       e.preventDefault()
       if(message) {
@@ -41,17 +47,14 @@ let socket;
       }
     }
 
-    console.log('message data -->', message)
-    console.log('MESSAGES data -->', messages)
+    console.log('NEW message data -->', message)
+    console.log('ALL MESSAGES Collection  -->', messages)
 
   return (
     <div className="outerContainer">
       <div className="container">
-        <input
-        value={message}
-        onChange={e => setMessage(e.target.value)}
-        onKeyPress={e => e.key === 'Enter' ? userMessage(e) : null}
-        />
+        <InfoBar room={room}/>
+        <Input message={message} setMessage={setMessage} sendMessage={userMessage}/>
       </div>
     </div>
   )
