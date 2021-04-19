@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
       socket.emit('message', {user: 'admin', text: `${user.name}, welcome to room ${user.room}`})
       //socket.broadcast will emit a message to everyone ELSE in the room but the user
       socket.broadcast.to(user.room).emit('message', {user: 'admin', text: `${user.name} has joined!`}) //will be visible to other participants in the chat
-
+      io.to(user.room).emit('roomData', { room: user.room, users: getAllUsersInRoom(user.room)})
 
       callback()
     })
@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);
 
-    if(user) {
+    if (user) {
       io.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left.` });
       io.to(user.room).emit('roomData', { room: user.room, users: getAllUsersInRoom(user.room)});
     }

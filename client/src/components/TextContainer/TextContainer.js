@@ -16,20 +16,20 @@ const TextContainer = ({ users }) => (
       users
         ? (
           <div>
-            <h1>People currently chatting:</h1>
+            <h1>Room Participants:</h1>
             <div className="activeContainer">
               <h2>
-                {users.map(({name}) => (
-                  <div key={name} className="activeItem">
-                    {name}
-                    <img alt="Online Icon" src={onlineIcon}/>
+                {users.map(({name}, index) => (
+                  <div key={Date.now() + index} className="activeItem">
+                    <div className="green-icon-div"><img className="green-icon" src={onlineIcon}/></div>
+                    <div>{name}</div>
                   </div>
                 ))}
               </h2>
             </div>
           </div>
         )
-        : null
+        : <h1>FAILED TO FIND USERS</h1>
     }
   </div>
 );

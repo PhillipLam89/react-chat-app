@@ -26,7 +26,7 @@ const removeUser = (removalID) =>  {
 const getUser = (id) => users.find(user => user.id === id)
 
 
-const getAllUsersInRoom = room => users.filter(user => user.room === room)// will return array with names of all users in specific room
+const getAllUsersInRoom = (room) => users.filter(user => user.room === room)// will return array with names of all users in specific room
 
 
 module.exports = {addUser, removeUser, getUser, getAllUsersInRoom}
