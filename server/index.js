@@ -6,6 +6,8 @@ const {addUser, removeUser, getUser, getAllUsersInRoom } = require('./users')
 const PORT = process.env.PORT || 5000
 const router = require('./router')
 const app = express()
+const cors = require('cors')
+app.use(cors())
 
           //method 1
 // const http = require('http')
