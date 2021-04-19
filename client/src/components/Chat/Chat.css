@@ -1,0 +1,52 @@
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 2em;
+  background-color: lightcyan;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 8px;
+  height: 80vh;
+  width: 75vw;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+}
+h1 {
+  margin: 0;
+}
+.chat-info-container {
+    width: auto;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .outerContainer {
+    height: 100%;
+    display: block;
+    align-items: stretch
+  }
+  .chat-info-container {
+     margin-top: 2em;
+     background-color: lightcyan;
+  }
+  .container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* @media (min-width: 480px) and (max-width: 1200px) {
+  .container {
+    width: 60%;
+  }
+} */

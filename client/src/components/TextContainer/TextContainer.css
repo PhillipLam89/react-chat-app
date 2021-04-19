@@ -1,0 +1,11 @@
+
+
+.activeItem {
+  display: flex;
+  gap: .5rem;
+}
+
+.green-icon-div {
+  display: grid;
+  place-items: center;
+}
